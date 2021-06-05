@@ -4,7 +4,7 @@
 package com.courses.microservices.restwebservices.response;
 
 /**
- * @author aniru
+ * @author Aniruddh Mishra
  *
  */
 public class GreetingsResponse {

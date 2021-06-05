@@ -4,6 +4,7 @@
 package com.courses.microservices.restwebservices.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.courses.microservices.restwebservices.response.GreetingsResponse;
 
 /**
- * @author aniru
+ * @author Aniruddh Mishra
  *
  */
 
@@ -31,5 +32,10 @@ public class GreetingsController {
 	@GetMapping(path = "/good-morning")
 	public GreetingsResponse goodMorning() {
 		return new GreetingsResponse("Good Morning !!");
+	}
+	
+	@GetMapping(path = "/greet/{message}")
+	public GreetingsResponse greet(@PathVariable String message) {
+		return new GreetingsResponse(message);
 	}
 }
