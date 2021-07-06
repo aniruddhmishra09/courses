@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.courses.microservices.restwebservices.exception.ResourceNotFoundException;
 import com.courses.microservices.restwebservices.request.UserRequest;
 import com.courses.microservices.restwebservices.response.UserResponse;
 import com.courses.microservices.restwebservices.service.UserManagementService;
@@ -38,13 +39,18 @@ public class UserManagementController {
 	
 	@GetMapping(path = "/user/{id}")
 	public UserResponse getUserById(@PathVariable int id) {
+		UserResponse userResponse= userManagementService.getUserById(id);
+		if(null == userResponse) {
+			throw new ResourceNotFoundException(String.valueOf(id));
+		}
 		return userManagementService.getUserById(id);
 	}
 	
 	@PostMapping(path = "/user")
 	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
 		UserResponse userResponse = userManagementService.createUser(userRequest);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userResponse.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(userResponse.getId()).toUri();
 		return ResponseEntity.created(location).build();
 		
 	}
