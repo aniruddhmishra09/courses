@@ -5,6 +5,7 @@ package com.courses.microservices.restwebservices.dao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -50,6 +51,18 @@ public class UserManagementDao {
 		}
 		users.add(user);
 		return user;
+	}
+	
+	public User deleteById(int id) {
+		Iterator<User> userIterator = users.iterator();
+		while(userIterator.hasNext()) {
+			User user = userIterator.next();
+			if(user.getId() == id) {
+				userIterator.remove();
+				return user;
+			}
+		}
+		return null;
 	}
 	
 }

@@ -59,4 +59,14 @@ public class UserManagementService {
 		return userResponse;
 	}
 	
+	public UserResponse deleteUserById(int id) {
+		UserResponse userResponse = null;
+		User user = userManagementDao.deleteById(id);
+		if(!ObjectUtils.isEmpty(user)) {
+			userResponse = new UserResponse();
+			BeanUtils.copyProperties(user, userResponse);
+		}
+		return userResponse;
+	}
+	
 }
