@@ -6,6 +6,8 @@ package com.courses.microservices.restwebservices.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,7 @@ public class UserManagementController {
 	}
 	
 	@PostMapping(path = "/user")
-	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+	public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
 		UserResponse userResponse = userManagementService.createUser(userRequest);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userResponse.getId()).toUri();
