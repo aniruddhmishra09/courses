@@ -3,7 +3,7 @@
  */
 package com.courses.microservices.restwebservices.request;
 
-import javax.validation.constraints.Past;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,10 +12,10 @@ import javax.validation.constraints.Size;
  */
 public class UserRequest {
 	
-	@Size(min = 2)
+	@Size(min = 2, message="Name should have atleast 2 characters")
 	private String name;
 	
-	@Past
+	@NotNull(message = "Birth Date cannot be null")
 	private String birthDate;
 	
 	public String getName() {
