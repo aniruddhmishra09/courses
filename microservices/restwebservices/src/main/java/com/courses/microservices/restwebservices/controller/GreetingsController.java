@@ -45,9 +45,10 @@ public class GreetingsController {
 		return new GreetingsResponse(message);
 	}
 
-	//Use LocaleContextHolder to avoid passing accept-language header in every request
+	// Use LocaleContextHolder to avoid passing accept-language header in every
+	// request
 	@GetMapping(path = "/good-morning-i18n")
-	public String goodMorningWithI18n(/*@RequestHeader(name = "accept-language", required = false) Locale locale*/) {
+	public String goodMorningWithI18n(/* @RequestHeader(name = "accept-language", required = false) Locale locale */) {
 		return messageSource.getMessage("good.morining", null, "Default-Message", LocaleContextHolder.getLocale());
 	}
 }

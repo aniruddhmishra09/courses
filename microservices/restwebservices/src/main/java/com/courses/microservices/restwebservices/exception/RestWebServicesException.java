@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
  *
  */
 public class RestWebServicesException {
-	
+
 	private LocalDateTime timeStamp;
 	private String message;
 	private String details;
-	
+
 	public RestWebServicesException(LocalDateTime timeStamp, String message, String details) {
 		super();
 		this.timeStamp = timeStamp;
@@ -45,5 +45,5 @@ public class RestWebServicesException {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
+
 }

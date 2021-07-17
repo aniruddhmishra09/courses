@@ -9,18 +9,17 @@ import java.time.LocalDate;
  * @author Aniruddh Mishra
  *
  */
-
-public class UserResponse {
+public class UserResponseV2 {
 
 	private int id;
-	private String name;
+	private Name name;
 	private LocalDate birthDate;
 
-	public UserResponse() {
+	public UserResponseV2() {
 		super();
 	}
 
-	public UserResponse(int id, String name, LocalDate birthDate) {
+	public UserResponseV2(int id, Name name, LocalDate birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,11 +34,11 @@ public class UserResponse {
 		this.id = id;
 	}
 
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 

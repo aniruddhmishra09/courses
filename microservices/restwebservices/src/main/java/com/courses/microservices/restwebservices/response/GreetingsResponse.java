@@ -8,7 +8,7 @@ package com.courses.microservices.restwebservices.response;
  *
  */
 public class GreetingsResponse {
-	
+
 	private String message;
 
 	public GreetingsResponse(String message) {
@@ -28,6 +28,5 @@ public class GreetingsResponse {
 	public String toString() {
 		return String.format("GreetingsResponse [message=%s]", message);
 	}
-	
-	
+
 }

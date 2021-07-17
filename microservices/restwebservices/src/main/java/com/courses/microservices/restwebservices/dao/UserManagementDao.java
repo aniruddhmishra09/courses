@@ -20,49 +20,49 @@ import com.courses.microservices.restwebservices.model.User;
  */
 @Component
 public class UserManagementDao {
-	
+
 	private int userCount = 0;
-	
+
 	private List<User> users = new ArrayList<>();
-	
+
 	@PostConstruct
 	public void initUsers() {
 		users.add(new User(++userCount, "John", LocalDate.now()));
 		users.add(new User(++userCount, "Dinu", LocalDate.now()));
 		users.add(new User(++userCount, "Ron", LocalDate.now()));
 	}
-	
-	public List<User> getUser(){
+
+	public List<User> getUser() {
 		return users;
 	}
-	
+
 	public User getUser(int id) {
-		for(User user : users) {
-			if(user.getId() == id) {
+		for (User user : users) {
+			if (user.getId() == id) {
 				return user;
 			}
 		}
 		return null;
 	}
-	
+
 	public User saveUser(User user) {
-		if(user.getId() == null) {
+		if (user.getId() == null) {
 			user.setId(++userCount);
 		}
 		users.add(user);
 		return user;
 	}
-	
+
 	public User deleteById(int id) {
 		Iterator<User> userIterator = users.iterator();
-		while(userIterator.hasNext()) {
+		while (userIterator.hasNext()) {
 			User user = userIterator.next();
-			if(user.getId() == id) {
+			if (user.getId() == id) {
 				userIterator.remove();
 				return user;
 			}
 		}
 		return null;
 	}
-	
+
 }

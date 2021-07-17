@@ -10,15 +10,15 @@ import java.time.LocalDate;
  *
  */
 public class User {
-	
+
 	private Integer id;
 	private String name;
 	private LocalDate birthDate;
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
@@ -55,5 +55,4 @@ public class User {
 		return String.format("User [id=%s, name=%s, birthDate=%s]", id, name, birthDate);
 	}
 
-		
 }

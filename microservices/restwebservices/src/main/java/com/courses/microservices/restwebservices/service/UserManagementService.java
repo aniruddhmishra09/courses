@@ -15,6 +15,7 @@ import org.springframework.util.ObjectUtils;
 import com.courses.microservices.restwebservices.dao.UserManagementDao;
 import com.courses.microservices.restwebservices.model.User;
 import com.courses.microservices.restwebservices.request.UserRequest;
+import com.courses.microservices.restwebservices.response.FilterUserResponse;
 import com.courses.microservices.restwebservices.response.UserResponse;
 
 /**
@@ -26,29 +27,29 @@ public class UserManagementService {
 
 	@Autowired
 	private UserManagementDao userManagementDao;
-	
-	public List<UserResponse> getAllUsers(){
-		List<UserResponse> userResponseList = new ArrayList<>();
-		List<User> users = 	userManagementDao.getUser();
-		UserResponse userResponse = null;
-		for(User user : users) {
-			userResponse = new UserResponse();
+
+	public List<FilterUserResponse> getAllUsers() {
+		List<FilterUserResponse> userResponseList = new ArrayList<>();
+		List<User> users = userManagementDao.getUser();
+		FilterUserResponse userResponse = null;
+		for (User user : users) {
+			userResponse = new FilterUserResponse();
 			BeanUtils.copyProperties(user, userResponse);
 			userResponseList.add(userResponse);
 		}
 		return userResponseList;
 	}
-	
+
 	public UserResponse getUserById(int id) {
 		UserResponse userResponse = null;
 		User user = userManagementDao.getUser(id);
-		if(!ObjectUtils.isEmpty(user)) {
+		if (!ObjectUtils.isEmpty(user)) {
 			userResponse = new UserResponse();
 			BeanUtils.copyProperties(user, userResponse);
 		}
 		return userResponse;
 	}
-	
+
 	public UserResponse createUser(UserRequest userRequest) {
 		User user = new User();
 		UserResponse userResponse = new UserResponse();
@@ -58,15 +59,15 @@ public class UserManagementService {
 		BeanUtils.copyProperties(user, userResponse);
 		return userResponse;
 	}
-	
+
 	public UserResponse deleteUserById(int id) {
 		UserResponse userResponse = null;
 		User user = userManagementDao.deleteById(id);
-		if(!ObjectUtils.isEmpty(user)) {
+		if (!ObjectUtils.isEmpty(user)) {
 			userResponse = new UserResponse();
 			BeanUtils.copyProperties(user, userResponse);
 		}
 		return userResponse;
 	}
-	
+
 }
