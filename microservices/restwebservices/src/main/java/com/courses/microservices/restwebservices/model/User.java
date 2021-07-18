@@ -4,10 +4,13 @@
 package com.courses.microservices.restwebservices.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author Aniruddh Mishra
@@ -19,8 +22,13 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	private String name;
+	
 	private LocalDate birthDate;
+	
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	private List<UserPosts> userPosts;
 
 	public User() {
 		super();
@@ -31,6 +39,14 @@ public class User {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
+	}
+
+	public List<UserPosts> getUserPosts() {
+		return userPosts;
+	}
+
+	public void setUserPosts(List<UserPosts> userPosts) {
+		this.userPosts = userPosts;
 	}
 
 	public void setBirthDate(LocalDate birthDate) {

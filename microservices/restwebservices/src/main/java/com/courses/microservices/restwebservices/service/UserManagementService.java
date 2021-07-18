@@ -112,5 +112,5 @@ public class UserManagementService {
 	public void deleteUserByIdFromDb(int id) {
 		userRepository.deleteById(id);
 	}
-
+	
 }
