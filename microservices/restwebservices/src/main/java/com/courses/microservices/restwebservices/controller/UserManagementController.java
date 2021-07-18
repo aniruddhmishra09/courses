@@ -91,4 +91,41 @@ public class UserManagementController {
 
 		return new ResponseEntity<UserResponse>(userResponse, deleteStatus);
 	}
+	
+	@GetMapping(path="/jpa/user")
+	public List<UserResponse> getAllUsersFromDb() {
+		return userManagementService.getAllUsersFromDb();
+		
+	}
+	
+	@GetMapping(path = "/jpa/user/{id}")
+	public EntityModel<UserResponse> getUserByIdFromDb(@PathVariable int id) {
+		UserResponse userResponse = userManagementService.getUserByIdFromDb(id);
+		if (null == userResponse) {
+			throw new ResourceNotFoundException(String.valueOf(id));
+		}
+		// Adding Links to All User Rest Service as a part of HATEOS
+		EntityModel<UserResponse> userResponseModel = EntityModel.of(userResponse);
+		WebMvcLinkBuilder linkToAllUser = linkTo(methodOn(this.getClass()).getAllUsers());
+		WebMvcLinkBuilder linkToDeleteUser = linkTo(methodOn(this.getClass()).deleteUserById(id));
+		userResponseModel.add(linkToAllUser.withRel("all-users"));
+		userResponseModel.add(linkToDeleteUser.withRel("delete-user"));
+
+		return userResponseModel;
+	}
+	
+	
+	@PostMapping(path = "/jpa/user")
+	public ResponseEntity<UserResponse> createUserInDb(@Valid @RequestBody UserRequest userRequest) {
+		UserResponse userResponse = userManagementService.createUserInDb(userRequest);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(userResponse.getId()).toUri();
+		return ResponseEntity.created(location).build();
+
+	}
+
+	@DeleteMapping(path = "/jpa/user/{id}")
+	public void deleteUserByIdFromDb(@PathVariable int id) {
+		userManagementService.deleteUserByIdFromDb(id);
+	}
 }

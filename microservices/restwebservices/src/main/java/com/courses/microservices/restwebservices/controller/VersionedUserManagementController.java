@@ -45,13 +45,13 @@ public class VersionedUserManagementController {
 	}
 	
 	//Header Versioning
-	@GetMapping(value = "/user/header", headers = "X-API-VERSION=1")
+	@GetMapping(value = "/user/header", headers = "API-VERSION=1")
 	public UserResponse getUserResponseHeaderV1() {
 		return new UserResponse(101, "John Carter", LocalDate.now());
 	}
 	
 	//Header Versioning
-	@GetMapping(value = "/user/header", headers = "X-API-VERSION=2")
+	@GetMapping(value = "/user/header", headers = "API-VERSION=2")
 	public UserResponseV2 getUserResponseV2HeaderV2() {
 		return new UserResponseV2(101, new Name("John", "Carter"), LocalDate.now());
 	}
