@@ -14,9 +14,11 @@ import com.courses.microservices.currencyconversion.response.CurrencyConversionR
  *
  */
 
-@FeignClient(name="currencyRateFeignClient" , url="http://localhost:8000")
+@FeignClient(name = "currencyRateFeignClient", url = "http://localhost:8000")
 public interface CurrencyRateFeignClient {
+
 	@GetMapping(path = "/currency-rate/from/{fromCurrency}/to/{toCurrency}")
-	public CurrencyConversionResponse getCurrencyRate(@PathVariable(name = "fromCurrency") String fromCurrency,
+	CurrencyConversionResponse getCurrencyRate(@PathVariable(name = "fromCurrency") String fromCurrency,
 			@PathVariable(name = "toCurrency") String toCurrency);
+
 }
