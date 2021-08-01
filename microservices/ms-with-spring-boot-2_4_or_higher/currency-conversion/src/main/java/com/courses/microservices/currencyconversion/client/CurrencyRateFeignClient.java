@@ -14,7 +14,9 @@ import com.courses.microservices.currencyconversion.response.CurrencyConversionR
  *
  */
 
-@FeignClient(name = "currencyRateFeignClient", url = "http://localhost:8000")
+//@FeignClient(name = "currencyRateFeignClient", url = "http://localhost:8000")
+//To call via eureka server with load balancer
+@FeignClient(name = "currency-rate")
 public interface CurrencyRateFeignClient {
 
 	@GetMapping(path = "/currency-rate/from/{fromCurrency}/to/{toCurrency}")
