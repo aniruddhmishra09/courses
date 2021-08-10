@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 /**
@@ -53,6 +54,12 @@ public class CircuitBreakerClientController {
 		logger.info("Before Calling circuit-breaker-server API");
 		ResponseEntity<String> entity = new RestTemplate().getForEntity(url, String.class);
 		return entity.getBody();
+	}
+	
+	@GetMapping(path = "/circuit-breaker-client/defaultRateLimiterr/{response}")
+	@RateLimiter(name = "default")
+	public String getResponseWithDefaultRateLimiter(@PathVariable("response") String response) {
+		return "Default Rate Limiter Response";
 	}
 
 }
