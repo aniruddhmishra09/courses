@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 
 /**
@@ -30,17 +31,28 @@ public class CircuitBreakerClientController {
 		ResponseEntity<String> entity = new RestTemplate().getForEntity(url, String.class);
 		return entity.getBody();
 	}
-	
+
 	@GetMapping(path = "/circuit-breaker-client/customRetry/{response}")
-	@Retry(name = "custom-retry", fallbackMethod="commonFallbackMethod")
+	@Retry(name = "custom-retry", fallbackMethod = "commonFallbackMethod")
 	public String getResponseWithCustomRetry(@PathVariable("response") String response) {
 		String url = "http://localhost:8000/circuit-breaker-server/" + response;
 		logger.info("Before Calling circuit-breaker-server API");
 		ResponseEntity<String> entity = new RestTemplate().getForEntity(url, String.class);
 		return entity.getBody();
 	}
-	
+
+	@SuppressWarnings("unused")
 	private String commonFallbackMethod(Exception e) {
 		return "Common Fallback Method";
 	}
+
+	@GetMapping(path = "/circuit-breaker-client/defaultCircuitBreaker/{response}")
+	@CircuitBreaker(name = "default", fallbackMethod = "commonFallbackMethod")
+	public String getResponseWithDefaultCircuitBreaker(@PathVariable("response") String response) {
+		String url = "http://localhost:8000/circuit-breaker-server/" + response;
+		logger.info("Before Calling circuit-breaker-server API");
+		ResponseEntity<String> entity = new RestTemplate().getForEntity(url, String.class);
+		return entity.getBody();
+	}
+
 }
