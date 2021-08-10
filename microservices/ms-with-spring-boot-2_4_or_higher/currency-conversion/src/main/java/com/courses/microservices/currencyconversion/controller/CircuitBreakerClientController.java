@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -56,10 +57,16 @@ public class CircuitBreakerClientController {
 		return entity.getBody();
 	}
 	
-	@GetMapping(path = "/circuit-breaker-client/defaultRateLimiterr/{response}")
+	@GetMapping(path = "/circuit-breaker-client/defaultRateLimiter/{response}")
 	@RateLimiter(name = "default")
 	public String getResponseWithDefaultRateLimiter(@PathVariable("response") String response) {
 		return "Default Rate Limiter Response";
+	}
+	
+	@GetMapping(path = "/circuit-breaker-client/defaultBulkHead/{response}")
+	@Bulkhead(name = "default")
+	public String getResponseWithDefaultBulkHead(@PathVariable("response") String response) {
+		return "Default BulkHead Response";
 	}
 
 }
