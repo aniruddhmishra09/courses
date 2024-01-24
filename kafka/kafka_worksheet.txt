@@ -1,0 +1,5 @@
+Command to start Zookeeper
+zookeeper-server-start.sh ~/Dev/Software/kafka_2.13-3.6.1/config/zookeeper.properties
+
+Command to start kafka
+kafka-server-start.sh ~/Dev/Software/kafka_2.13-3.6.1/config/server.properties
