@@ -26,7 +26,7 @@ public class SimpleProducerWithCallback {
 
 
         try(KafkaProducer<String, String> producer = new KafkaProducer<>(properties);){
-            ProducerRecord<String, String> record = new ProducerRecord<>(topic,  message);
+            ProducerRecord<String, String> record = new ProducerRecord<>(topic,UUID.randomUUID().toString(),  message);
             log.info("Before Sending Message to Kafka Topic - {} & Message - {}",topic, message);
             producer.send(record, new Callback() {
                 @Override
