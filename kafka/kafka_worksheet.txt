@@ -18,3 +18,10 @@ kafka-storage.sh format -t <uuid> -c ~/Dev/Software/kafka_2.13-3.6.1/config/kraf
 kafka-server-start.sh ~/Dev/Software/kafka_2.13-3.6.1/config/kraft/server.properties
 
 __________________________________________________________
+
+CLI Command
+
+Consume messages
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <topic_name>
+
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <topic_name> --formatter kafka.tools.DefaultMessageFormatter --property print.timestamp=true --property print.key=true --property print.value=true 

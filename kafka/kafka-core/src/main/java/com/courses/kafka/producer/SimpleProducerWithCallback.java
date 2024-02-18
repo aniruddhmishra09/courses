@@ -18,24 +18,30 @@ public class SimpleProducerWithCallback {
         log.info("Entering Kafka Producer with Callback");
         String topic = "core-kafka-2";
         String message = topic +"-"+ ThreadLocalRandom.current().nextInt(11);
+
+        //Connection Properties
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers","127.0.0.1:9092");
-
+        //Properties Properties
         properties.setProperty("key.serializer", StringSerializer.class.getName());
         properties.setProperty("value.serializer", StringSerializer.class.getName());
 
-
-        try(KafkaProducer<String, String> producer = new KafkaProducer<>(properties);){
+        try(KafkaProducer<String, String> producer = new KafkaProducer<>(properties)){
+            //Creating Kafka Message Record
             ProducerRecord<String, String> record = new ProducerRecord<>(topic,UUID.randomUUID().toString(),  message);
             log.info("Before Sending Message to Kafka Topic - {} & Message - {}",topic, message);
+            //Publishing Kafka Message
             producer.send(record, new Callback() {
+                //Handling Kafka Callback
                 @Override
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
                     if (e==null){
+                        //Handling Kafka Success Callback
                         log.info("Message Successfully Sent to Topic");
                         log.info("Message metadata details | Topic - {} | Partition - {} | Offset - {}  | Timestamp - {}",
                                 recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(), recordMetadata.timestamp());
                     }else {
+                        //Handling Kafka Failure Callback
                         log.error("Error Caught in Callback while Publishing Message " , e);
                     }
                 }
