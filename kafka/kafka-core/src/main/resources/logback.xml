@@ -1,0 +1,20 @@
+<configuration>
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- enable debug only on org.hibernate.SQL package -->
+    <logger name="org.hibernate.SQL" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
