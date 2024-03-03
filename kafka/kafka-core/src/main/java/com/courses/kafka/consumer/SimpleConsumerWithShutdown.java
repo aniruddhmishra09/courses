@@ -13,7 +13,9 @@ import java.util.Properties;
 @Slf4j
 public class SimpleConsumerWithShutdown {
 
+
     public static void main(String[] args) {
+
         log.info("Entering Kafka Consumer");
 
         String groupId = "core-kafka-group-1";
