@@ -20,11 +20,11 @@
             <artifactId>reactor-core</artifactId>
         </dependency>
         <!-- test data -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

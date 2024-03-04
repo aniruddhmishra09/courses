@@ -2,7 +2,7 @@ package org.courses.reactive.mono;
 
 import reactor.core.publisher.Mono;
 
-public class MonoJust {
+public class Demo01_MonoJust {
 
     public static void main(String[] args) {
         //Publisher
