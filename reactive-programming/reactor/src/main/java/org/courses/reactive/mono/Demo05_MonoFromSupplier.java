@@ -18,7 +18,6 @@ public class Demo05_MonoFromSupplier {
         System.out.println("After : Using Mono.just");
 
 
-
         System.out.println("Before : Using Mono.fromSupplier");
         /*If Requirement is to perform some new action based on the Subscriber Demand
          Then Mono.fromSupplier should be used */
@@ -36,7 +35,7 @@ public class Demo05_MonoFromSupplier {
 
     }
 
-    private static String getName(){
+    private static String getName() {
         System.out.println("Start : Generating Name");
         try {
             Thread.sleep(1000);

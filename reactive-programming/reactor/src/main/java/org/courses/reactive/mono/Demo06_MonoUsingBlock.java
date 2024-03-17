@@ -14,12 +14,12 @@ public class Demo06_MonoUsingBlock {
         /*.block method uses Blocking subscriber which blocks the current thread & returns response
         In ideal case this should not be used*/
         String name = Demo06_MonoUsingBlock.getName().block();
-        System.out.println("Generated name is - "+name);
+        System.out.println("Generated name is - " + name);
         System.out.println("After : Using Mono.block");
 
     }
 
-    private static Mono<String> getName(){
+    private static Mono<String> getName() {
         System.out.println("Inside Name Generating Process");
         return Mono.fromSupplier(() -> {
             System.out.println("Start : Generating Name");

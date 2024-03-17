@@ -9,6 +9,6 @@ public class Demo01_MonoJust {
         Mono<Integer> mono = Mono.just(1);
         System.out.println(mono);
         //Subscribing Mono - In Order to Publisher to emmit data , you have to subscribe
-        mono.subscribe(i -> System.out.println("Received - "+i));
+        mono.subscribe(i -> System.out.println("Received - " + i));
     }
 }

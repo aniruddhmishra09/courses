@@ -12,7 +12,7 @@ public class Demo08_MonoFromRunnable {
         System.out.println("Before : Using Mono from Runnable");
 
         /*Runnable is useful when there is operation does not retunr anything
-        * where-as it is helpful for scenario like where use wants to notify once operation is completed*/
+         * where-as it is helpful for scenario like where use wants to notify once operation is completed*/
         Runnable runnable = () -> System.out.println("Name is printed !!");
 
         Mono.fromRunnable(runnable).subscribe(CommonUtils.onNextBehaviour(),

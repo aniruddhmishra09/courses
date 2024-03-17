@@ -13,16 +13,14 @@ public class Demo03_FluxWithArrayOrList {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
 
         System.out.println("Subscribing Flux From List");
-        Flux.fromIterable(numbers)
-                .subscribe(CommonUtils.onNextBehaviour());
+        Flux.fromIterable(numbers).subscribe(CommonUtils.onNextBehaviour());
 
         System.out.println("Creating Flux From Array");
 
         String[] alphabets = {"a", "b", "c", "d"};
 
         System.out.println("Subscribing Flux From Array");
-        Flux.fromArray(alphabets)
-                .subscribe(CommonUtils.onNextBehaviour());
+        Flux.fromArray(alphabets).subscribe(CommonUtils.onNextBehaviour());
 
 
     }

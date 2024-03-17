@@ -20,7 +20,7 @@ public class Demo07_MonoFromFuture {
         System.out.println("After : Using Completable Future");
     }
 
-    private static CompletableFuture<String> getName(){
+    private static CompletableFuture<String> getName() {
         return CompletableFuture.supplyAsync(() -> CommonUtils.faker().name().fullName());
     }
 }
