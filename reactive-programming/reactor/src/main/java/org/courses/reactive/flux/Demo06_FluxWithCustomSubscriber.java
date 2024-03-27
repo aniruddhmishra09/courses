@@ -42,7 +42,24 @@ public class Demo06_FluxWithCustomSubscriber {
                 });
 
         CommonUtils.sleepThreadInSeconds(2);
+        System.out.println("Requesting 3 Items");
+        atomicReference.get().request(3);
 
+        CommonUtils.sleepThreadInSeconds(2);
+        System.out.println("Requesting 3 Items");
+        atomicReference.get().request(3);
+
+        CommonUtils.sleepThreadInSeconds(2);
+        System.out.println("Requesting 3 Items");
+        atomicReference.get().request(3);
+
+        CommonUtils.sleepThreadInSeconds(2);
+        System.out.println("Requesting 3 Items");
+        atomicReference.get().request(3);
+
+        CommonUtils.sleepThreadInSeconds(2);
+        System.out.println("Requesting 3 Items");
+        atomicReference.get().request(3);
 
     }
 }
