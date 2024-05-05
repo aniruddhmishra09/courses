@@ -1,6 +1,7 @@
 package org.courses.reactive.utils;
 
 import com.github.javafaker.Faker;
+import org.reactivestreams.Subscriber;
 
 import java.util.function.Consumer;
 
@@ -31,5 +32,13 @@ public class CommonUtils {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static Subscriber<Object> subscriber(){
+        return new DefaultSubscriber();
+    }
+
+    public static Subscriber<Object> subscriber(String subscriberName){
+        return new DefaultSubscriber(subscriberName);
     }
 }
